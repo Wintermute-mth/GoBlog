@@ -1,0 +1,8 @@
+<h1>Edit Post</h1>
+<%= form_for :post, url: post_path, method: :patch do |p| %>
+	<p>Print name</p>
+	<p><%= p.text_field :name %></p>
+	<p>Print message</p>
+	<p><%= p.text_area :text %></p>
+	<p><%= p.submit 'Save' %></p>
+<% end %>
