@@ -1,0 +1,20 @@
+<%= form_for @post do |p| %>
+    <%  if @post.errors.any? %>
+    <hr>
+        <h2>List of Errors:</h2>
+        <ul>
+            <% @post.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+        <p>Try again</p>
+        <hr>
+    <% end %>
+    <p>Print name</p>
+    <p><%= p.text_field :name %></p>
+    <p>Print message</p>
+    <p><%= p.text_area :text %></p>
+    <p><%= p.submit 'Save' %></p>
+<% end %>
+
+<p><%= link_to 'Back', root_path %></p>
