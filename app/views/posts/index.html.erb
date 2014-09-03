@@ -1,18 +1,10 @@
-<% content_for :head do %>
-    <title>Main page</title>
-<% end %>
+<% content_for :title, 'Main page' %>
 
 <h1>All posts</h1>
-<% @posts.each do |post| %>
-	<table>
-		<th>Name</th>
-		<th>Message</th>
-		<tr>
-			<td><%= post.name %></td>
-			<td><%= post.text %></td>
-			<td><%= link_to 'Update', edit_post_path(post) %></td>
-			<td><%= link_to 'Delete', post_path(post), method: :delete %></td>
-		</tr>
-	</table>
-<% end %>
-<p><%= link_to 'New post', new_post_path %></p>
+<table class="table" id="posts">
+	<th>Name</th>
+	<th>Message</th>
+		<%= render @posts %>
+</table>
+
+<%= render 'form' %>

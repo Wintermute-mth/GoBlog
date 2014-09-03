@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   def index
+    @post = Post.new
   	@posts = Post.all
   end
 
@@ -10,10 +11,13 @@ class PostsController < ApplicationController
   def create
   	@post = Post.new(post_params)
 
-    if @post.save
-  	  redirect_to root_path
-    else
-      render 'new'
+    respond_to do |format|
+      if @post.save
+    	  format.js
+        format.json { render json: @post, status: :created, location: @post }
+      else
+        render root_path
+      end
     end
   end
 
@@ -32,9 +36,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
-  	post = Post.find(params[:id])
-  	post.destroy
-  	redirect_to root_path
+  	@post = Post.find(params[:id])
+  	@post.destroy
+    respond_to do |format|
+  	   format.js
+    end
   end
 
   private

@@ -1,4 +1,14 @@
-<%= form_for @post do |p| %>
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5();
+    });
+
+  })
+</script>
+<br>
+<%= form_for @post, remote: true do |p| %>
     <%  if @post.errors.any? %>
     <hr>
         <h2>List of Errors:</h2>
@@ -13,7 +23,7 @@
     <p>Print name</p>
     <p><%= p.text_field :name %></p>
     <p>Print message</p>
-    <p><%= p.text_area :text %></p>
+    <p><%= p.text_area :text, class: 'wysihtml5', rows: "10", cols: "84" %></p>
     <p><%= p.submit 'Save' %></p>
 <% end %>
 
