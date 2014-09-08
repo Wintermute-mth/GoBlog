@@ -1,6 +1,8 @@
 <tr id="post_<%= post.id %>">
                 <td><%= post.name %></td>
                 <td><%= post.text.html_safe %></td>
+                <td><%= post.comments.size %></td>
+                <td><%= link_to 'Show', post_path(post), method: :get %></td>
                 <td><%= link_to 'Update', edit_post_path(post) %></td>
                 <td><%= link_to 'Delete', post_path(post), method: :delete, remote: true %></td>
             </tr>

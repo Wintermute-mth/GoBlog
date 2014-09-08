@@ -7,7 +7,7 @@
 
   })
 </script>
-<br>
+<div id="post_editor">
 <%= form_for @post, remote: true do |p| %>
     <%  if @post.errors.any? %>
     <hr>
@@ -26,5 +26,4 @@
     <p><%= p.text_area :text, class: 'wysihtml5', rows: "10", cols: "84" %></p>
     <p><%= p.submit 'Save' %></p>
 <% end %>
-
-<p><%= link_to 'Back', root_path %></p>
+</div>

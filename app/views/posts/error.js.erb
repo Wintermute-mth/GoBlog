@@ -1,0 +1,1 @@
+$("<h2>Error:</h2><p><ul><% @post.errors.full_messages.each do |message| %><li><%= message %></li><% end %></ul></p>").appendTo("#post_editor");

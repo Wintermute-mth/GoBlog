@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     @post = Post.new
-  	@posts = Post.all
+  	@posts = Post.all.sort_by { |post| post.comments.size }.reverse
   end
 
   def new
@@ -13,21 +13,21 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-    	  format.js
-        format.json { render json: @post, status: :created, location: @post }
+        format.js
       else
-        render root_path
+        format.js { render 'error.js.erb' }
       end
     end
   end
 
   def update
   	@post = Post.find(params[:id])
-
-    if @post.update(post_params)
-  	  redirect_to root_path
-    else
-      render 'edit'
+    respond_to do |format|
+      if @post.update(post_params)
+        format.js { render js: %(window.location.href='#{root_path}') }
+      else
+        format.js { render 'error.js.erb' }
+      end
     end
   end
 
@@ -41,6 +41,10 @@ class PostsController < ApplicationController
     respond_to do |format|
   	   format.js
     end
+  end
+
+  def show
+    @post = Post.find(params[:id])
   end
 
   private

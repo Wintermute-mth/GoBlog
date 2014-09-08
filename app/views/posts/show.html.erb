@@ -1,0 +1,23 @@
+<h1>Show</h1>
+<p><b>Name:</b></p>
+<p><%= @post.name %></p>
+<p><b>Text:</b></p>
+<p><%= @post.text.html_safe %></p>
+<h3><strong>Comments:</strong></h3>
+
+<% @post.comments.each do |comment| %>
+    <p><b><%= comment.author %></b></p>
+    <p><%= comment.message %></p>
+<% end %>
+
+<hr>
+
+<h3><strong>Add your comment:</strong></h3>
+<%= form_for ([@post, @post.comments.build]) do |c| %>
+    <p><b>Nickname:</b></p>
+    <p><%= c.text_field :author %></p>
+    <p><b>Message:</b></p>
+    <p><%= c.text_area :message, cols: "40" %></p>
+    <p><%= c.submit 'Add' %></p>
+<% end %>
+<%= link_to 'Back', root_path %>

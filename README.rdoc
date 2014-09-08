@@ -10,16 +10,18 @@ Here we have:
 
 * Using partials and block <tt>content_for</tt>
 
-==  List to do
-
-* Adding comments for posts
-
 * AJAX Validations
 
 * Sorting of posts
 
-* Pagination for posts
+* Adding comments for posts
+
+==  List to do
+
+* Adding registration with 'devise' gem
 
 * Subscribing with email
 
 * login with vk
+
+* Adding post searching
